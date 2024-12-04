@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import React, {useContext, useEffect, useState} from "react";
 import {ecomContext} from "../layout";
@@ -54,13 +55,18 @@ const Page = () => {
       data: prev.data.filter((item) => item._id !== id),
     }));
 
-    const itemid = JSON.parse(localStorage.getItem("cart"));
+    const itemid =
+      localStorage.getItem("cart") &&
+      localStorage.getItem("cart") !== null &&
+      JSON.parse(localStorage.getItem("cart"));
     if (itemid.id.includes(id)) {
       const index = itemid.id.indexOf(id);
       if (index > -1) {
         itemid.id.splice(index, 1);
       }
-      localStorage.setItem("cart", JSON.stringify(itemid));
+      localStorage.getItem("cart") !== null &&
+        localStorage.getItem("cart") &&
+        localStorage.setItem("cart", JSON.stringify(itemid));
     }
   };
 

@@ -30,12 +30,20 @@ export default function RootLayout({children}) {
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
-  const cartData = localStorage.getItem("cart");
+  const cartData = [];
+  if (typeof window !== "undefined") {
+    const cartData =
+      localStorage.getItem("cart") !== null && localStorage.getItem("cart");
+  }
   console.log("Raw cart data from localStorage:", cartData);
   useEffect(() => {
     // Check if the data exists
     axios
-      .post("/api/cart", {data: JSON.parse(localStorage.getItem("cart"))})
+      .post("/api/cart", {
+        data:
+          localStorage.getItem("cart") !== null &&
+          JSON.parse(localStorage.getItem("cart")),
+      })
       .then(function (response) {
         setCart(response.data);
       })

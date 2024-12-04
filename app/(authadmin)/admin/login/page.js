@@ -1,12 +1,13 @@
 "use client";
 
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {signIn, signOut, useSession} from "next-auth/react";
 import Link from "next/link";
 
 const page = () => {
   const {data, status} = useSession();
+  const [error, setError] = useState(null);
   const router = useRouter();
   console.log(data, status);
 

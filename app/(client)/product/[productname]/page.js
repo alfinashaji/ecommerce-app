@@ -24,7 +24,11 @@ const Page = ({params}) => {
   const {data: session, status} = useSession();
 
   const addToCart = (product) => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedCart =
+      (localStorage.getItem("cart") &&
+        localStorage.getItem("cart") !== null &&
+        JSON.parse(localStorage.getItem("cart"))) ||
+      [];
     console.log(storedCart);
 
     if (storedCart !== null || !storedCart.id.includes(product.id)) {

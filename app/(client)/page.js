@@ -40,11 +40,14 @@ export default function Home() {
   };
   // const router = useRouter();
 
-  if (localStorage.getItem("cart") === null) {
-    useEffect(() => {
-      localStorage.setItem("cart", JSON.stringify({id: []}));
-    }, []);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Perform the check and set the item only on the client side
+      if (localStorage.getItem("cart") === null) {
+        localStorage.setItem("cart", JSON.stringify({id: []}));
+      }
+    }
+  }, []);
   // Fetch products and categories data
   useEffect(() => {
     const fetchProducts = async () => {
