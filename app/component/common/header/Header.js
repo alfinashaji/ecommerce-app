@@ -222,7 +222,7 @@ const Header = ({isCartVisible, setCartVisible}) => {
                   {filteredCategories.length > 0 ? (
                     filteredCategories.map((category) => (
                       <Link
-                        href={`product/${category._id}`}
+                        href={`/product/${category._id}`}
                         className="group"
                         key={category._id}
                       >
