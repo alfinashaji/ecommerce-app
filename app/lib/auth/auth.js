@@ -32,7 +32,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     // Ensure role and other fields are added to the token and session
     async jwt({token, user}) {
